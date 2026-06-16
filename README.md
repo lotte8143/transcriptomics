@@ -1,8 +1,13 @@
 # transcriptomics
 casus
 
+goede titel concluderende titel 
+goed repruceerbaarheid, verwijzingen, ref genoom allemaal erbij zetten ook die gft, welke pathway, krijgen van de data ook vertellen verwijzen waar de artikel vandaan is lijst met accasion nummers 
 
-INLEIDING
+
+
+
+INTRODUCTIE
 RNA-sequencing (RNA-seq) is een techniek waarmee genexpressie op grote schaal kan worden geanalyseerd. Met deze methode kan worden bepaald welke genen actief zijn in een cel en hoe deze activiteit verandert onder verschillende omstandigheden, zoals ziekte of behandeling (Ozsolak & Milos, 2011). In deze casus wordt RNA-seq toegepast om verschillen in genexpressie te onderzoeken tussen patiënten met reumatoïde artritis (RA) en gezonde controlemonsters.
 Reumatoïde artritis is een chronische auto-immuunziekte die gekenmerkt wordt door ontsteking van gewrichten en weefselschade. Hoewel de exacte oorzaken nog niet volledig bekend zijn, is aangetoond dat veranderingen in genexpressie een belangrijke rol spelen in het ziekteproces (Smolen et al., 2016). Door deze veranderingen in kaart te brengen, kan meer inzicht worden verkregen in de moleculaire mechanismen die betrokken zijn bij RA.
 Het doel van dit onderzoek is om genen te identificeren die differentieel tot expressie komen tussen RA-patiënten en controles. Daarnaast wordt onderzocht welke biologische processen mogelijk betrokken zijn door middel van pathway-analyse en Gene Ontology (GO)-analyse. Deze aanpak draagt bij aan een beter begrip van de biologische processen die ten grondslag liggen aan reumatoïde artritis.
