@@ -64,6 +64,8 @@ Op basis van bestaande kennis wordt verwacht dat genen die betrokken zijn bij he
 
 
 methode 
+[script].(script/)
+
 
 Resultaten
 De differentiële genexpressie-analyse werd uitgevoerd op synoviumweefsel van RA-patiënten en controles met behulp van DESeq2. In totaal werden 3178 genen geïdentificeerd als significant differentieel tot expressie (padj < 0.01). Hiervan waren 1786 genen opgereguleerd in RA en 1297 genen neer-gereguleerd. In de volcano plot (Figuur 1) is te zien dat een groot aantal genen zowel een hoge log₂ fold change als een lage p-waarde heeft, wat wijst op sterke verschillen tussen de groepen. Enkele van de meest significante genen zijn ANKRD30BL, MT-ND6 en RAB3IL1, die sterk verhoogde expressie vertonen in RA.
