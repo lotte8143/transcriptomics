@@ -15,7 +15,7 @@ Op basis van bestaande kennis wordt verwacht dat genen die betrokken zijn bij he
 
 
 ## Methode 
-flowschema en tabel patienten
+flowschema
 
 In dit onderzoek werd de genexpressie van synoviumbiopten van patiënten met reumatoïde artritis (RA) vergeleken met die van gezonde controles. De gebruikte RNA-seq dataset is afkomstig uit eerder gepubliceerd onderzoek (Platzer et al., 2019) en werd verkregen via de NCBI Sequence Read Archive. De dataset bestond uit 8 samples, verdeeld over een controlegroep en een RA-groep (zie Tabel 1). De analyse werd uitgevoerd op single-end raw sequencing reads in FASTQ-formaat.
 
