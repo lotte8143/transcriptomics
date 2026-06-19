@@ -64,7 +64,7 @@ Op basis van bestaande kennis wordt verwacht dat genen die betrokken zijn bij he
 
 
 methode 
-[script].(script/)
+[script](script/)
 
 
 Resultaten
