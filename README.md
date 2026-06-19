@@ -2,14 +2,18 @@
 casus
 
 goede titel concluderende titel 
-goed repruceerbaarheid, verwijzingen, ref genoom allemaal erbij zetten ook die gft, welke pathway, krijgen van de data ook vertellen verwijzen waar de artikel vandaan is lijst met accasion nummers 
+
 
 ## Introductie
-Reumatoïde artritis (RA) is een chronische auto-immuunziekte waarbij het immuunsysteem het eigen lichaam aanvalt, vooral de gewrichten. Dit leidt tot ontsteking van het gewrichtsslijmvlies, wat pijn en uiteindelijk schade aan de gewrichten veroorzaakt. De precieze oorzaak van RA is nog niet volledig bekend, maar het lijkt een combinatie te zijn van genetische aanleg en omgevingsfactoren (Gabriel, 2001). Ook is bekend dat afweerstoffen en ontstekingsprocessen een grote rol spelen in de ziekte (Radu & Bungau, 2021).
+Reumatoïde artritis (RA) is een chronische auto-immuunziekte waarbij het immuunsysteem het eigen lichaam aanvalt. Dit leidt tot ontsteking van het gewrichtsslijmvlies, wat pijn en uiteindelijk schade aan de gewrichten veroorzaakt. De precieze oorzaak van RA is nog niet volledig bekend, maar het lijkt een combinatie te zijn van genetische aanleg en omgevingsfactoren (Gabriel, 2001). Ook is bekend dat afweerstoffen en ontstekingsprocessen een grote rol spelen in de ziekte (Radu & Bungau, 2021).
 
 Met behulp van transcriptomics kan onderzocht worden welke genen anders tot expressie komen bij mensen met RA in vergelijking met gezonde personen. Dit geeft inzicht in de onderliggende biologische processen en kan helpen om beter te begrijpen hoe de ziekte ontstaat en zich ontwikkelt.
 
-In dit onderzoek wordt gekeken naar genexpressie in synoviumweefsel van RA-patiënten en controles. De doelstelling is om te bepalen welke genen en pathways verschillend tot expressie komen tussen deze groepen. Hierbij horen de volgende deelvragen: Welke genen zijn significant verschillend tot expressie? En welke biologische processen zijn hierbij betrokken?
+In dit onderzoek wordt gekeken naar genexpressie in synoviumweefsel van RA-patiënten en controles. De doelstelling is om genen te identificeren die differentieel tot expressie komen tussen RA-patiënten en controles. Daarnaast wordt onderzocht welke biologische processen mogelijk betrokken zijn door middel van pathway-analyse en Gene Ontology (GO)-analyse. 
+Hierbij horen de volgende deelvragen: 
+Welke genen zijn significant differentieel tot expressie tussen RA-patiënten en controles?
+Welke biologische pathways zijn mogelijk betrokken bij deze verschillen?
+Welke Gene Ontology (GO)-categorieën zijn verrijkt in de set differentieel geëxpresseerde genen?
 
 Op basis van bestaande kennis wordt verwacht dat genen die betrokken zijn bij het immuunsysteem en ontstekingsreacties verhoogd tot expressie zullen zijn bij RA-patiënten.
 
