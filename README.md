@@ -1,5 +1,5 @@
 # Transcriptomics analyse toont immuun-gerelateerde genexpressieveranderingen bij reumatoïde artritis
-auteur: Lotte Huitenga (5494362)
+Auteur: Lotte Huitenga (5494362)
 Datum: 19-06-2026
 
 ## Introductie
