@@ -1,0 +1,28 @@
+Gebruik van GitHub in dit onderzoek
+#########################################################################
+
+In dit onderzoek is GitHub gebruikt om alle scripts, 
+resultaten en data op een gestructureerde manier te beheren. 
+Dit maakte het mogelijk om het project overzichtelijk te houden en ervoor te zorgen dat de analyse reproduceerbaar is. 
+
+Alle bestanden zijn georganiseerd in duidelijke mappen, zoals script, data en bronnen, 
+zodat alles eenvoudig terug te vinden is. Hierdoor kan iemand anders snel begrijpen waar de benodigde bestanden staan 
+en hoe de analyse is uitgevoerd.
+
+GitHub draagt bij aan de reproduceerbaarheid doordat zowel de gebruikte scripts als de inputdata (zoals de count matrix) 
+beschikbaar zijn gemaakt. Hierdoor kan een andere onderzoeker dezelfde stappen volgen en dezelfde analyse opnieuw uitvoeren. 
+Daarnaast is er aandacht besteed aan duidelijke naamgeving van bestanden, 
+zodat direct zichtbaar is wat de inhoud en functie van elk bestand is.
+
+Voor versiebeheer is GitHub een belangrijk hulpmiddel geweest. 
+Tijdens het project zijn meerdere aanpassingen gedaan aan de scripts, 
+bijvoorbeeld bij het verbeteren van de analyse en het toevoegen van nieuwe stappen zoals de GO‑analyse. 
+Door gebruik te maken van versiebeheer blijven eerdere versies bewaard 
+en kan altijd worden teruggekeken welke veranderingen zijn gemaakt.
+
+Ook is er gezorgd voor duidelijke documentatie in de scripts door middel van commentaar en een logische opbouw. 
+Hierdoor is het voor anderen begrijpelijk welke stappen zijn uitgevoerd en waarom.
+
+Samenvattend heeft het gebruik van GitHub in dit project bijgedragen aan een duidelijke structuur, 
+goed versiebeheer en een hoge mate van reproduceerbaarheid van de analyse.
+
