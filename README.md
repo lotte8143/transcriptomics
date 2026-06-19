@@ -1,8 +1,6 @@
-# transcriptomics
-casus
-
-goede titel concluderende titel 
-
+# Transcriptomics analyse toont immuun-gerelateerde genexpressieveranderingen bij reumatoïde artritis
+auteur: Lotte Huitenga (5494362)
+Datum: 19-06-2026
 
 ## Introductie
 Reumatoïde artritis (RA) is een chronische auto-immuunziekte waarbij het immuunsysteem het eigen lichaam aanvalt. Dit leidt tot ontsteking van het gewrichtsslijmvlies, wat pijn en uiteindelijk schade aan de gewrichten veroorzaakt. De precieze oorzaak van RA is nog niet volledig bekend, maar het lijkt een combinatie te zijn van genetische aanleg en omgevingsfactoren (Gabriel, 2001). Ook is bekend dat afweerstoffen en ontstekingsprocessen een grote rol spelen in de ziekte (Radu & Bungau, 2021).
@@ -14,8 +12,6 @@ Hierbij horen de volgende deelvragen:
 Welke genen zijn significant differentieel tot expressie tussen RA-patiënten en controles?
 Welke biologische pathways zijn mogelijk betrokken bij deze verschillen?
 Welke Gene Ontology (GO)-categorieën zijn verrijkt in de set differentieel geëxpresseerde genen?
-
-Op basis van bestaande kennis wordt verwacht dat genen die betrokken zijn bij het immuunsysteem en ontstekingsreacties verhoogd tot expressie zullen zijn bij RA-patiënten.
 
 
 ## Methode 
@@ -100,17 +96,11 @@ De staafdiagram toont de tien meest significante Gene Ontology (GO)-termen op ba
 
 
 ## Conclusie
+In dit onderzoek is gekeken naar verschillen in genexpressie tussen RA‑patiënten en gezonde controles. De resultaten laten duidelijk zien dat er veel verschillen zijn tussen beide groepen. In totaal werden 3178 genen gevonden die significant anders tot expressie komen. Daarvan waren 1786 genen hoger tot expressie in RA en 1297 genen lager. Opvallende genen die sterk verhoogd waren in RA zijn ANKRD30BL, MT‑ND6 en RAB3IL1, wat laat zien dat deze genen mogelijk een rol spelen bij de ziekte.
 
-In dit onderzoek is gekeken naar verschillen in genexpressie tussen RA-patiënten en gezonde controles met behulp van RNA-seq analyse. De resultaten laten zien dat er duidelijke verschillen zijn in genexpressie, waarbij een groot aantal genen significant op- of neer-gereguleerd is. De differentiële expressie-analyse en de volcano plot tonen dat veel genen sterk veranderd zijn bij RA.
-
-De GO-analyse en KEGG pathway-analyse bevestigen dat vooral genen die betrokken zijn bij het immuunsysteem en ontstekingsprocessen een belangrijke rol spelen. Met name processen zoals *adaptive immune response*, *immunoglobulin complex* en *B cell receptor signaling* zijn sterk verrijkt. Dit laat zien dat het immuunsysteem overactief is bij RA en dat antistoffen en immuuncellen een grote rol spelen in de ziekte. Deze resultaten passen goed bij wat al bekend is over RA als auto-immuunziekte.
+De GO-analyse en KEGG pathway-analyse bevestigen dat vooral genen die betrokken zijn bij het immuunsysteem en ontstekingsprocessen een belangrijke rol spelen. Met name processen zoals *adaptive immune response*, *immunoglobulin complex* en *B cell receptor signaling* zijn verhoogd. Dit laat zien dat het immuunsysteem overactief is bij RA en dat antistoffen en immuuncellen een grote rol spelen in de ziekte. Deze resultaten passen goed bij wat al bekend is over RA als auto-immuunziekte.
 
 Een beperking van dit onderzoek is het gebruik van een relatief kleine dataset en subset sequencing data, wat invloed kan hebben op de nauwkeurigheid van de resultaten. Toekomstig onderzoek zou gebruik kunnen maken van grotere datasets en aanvullende analysemethoden.
 
-Samenvattend laat dit onderzoek zien dat transcriptomics een waardevolle methode is om inzicht te krijgen in de onderliggende mechanismen van RA, en kan bijdragen aan het ontwikkelen van betere behandelingen.
-
-versie nummers en beetje packages noemen welke je hebt gebruikt niet de codes en vertellen hoe en wat je ermee hebt gedaan verwijzen naar script feature counts tabel met patieten
-
-
-
+Kortom, dit onderzoek laat zien dat transcriptomics helpt om beter te begrijpen welke genen en processen belangrijk zijn bij RA.
 
