@@ -4,66 +4,6 @@ casus
 goede titel concluderende titel 
 goed repruceerbaarheid, verwijzingen, ref genoom allemaal erbij zetten ook die gft, welke pathway, krijgen van de data ook vertellen verwijzen waar de artikel vandaan is lijst met accasion nummers 
 
-
-
-
-INTRODUCTIE
-RNA-sequencing (RNA-seq) is een techniek waarmee genexpressie op grote schaal kan worden geanalyseerd. Met deze methode kan worden bepaald welke genen actief zijn in een cel en hoe deze activiteit verandert onder verschillende omstandigheden, zoals ziekte of behandeling (Ozsolak & Milos, 2011). In deze casus wordt RNA-seq toegepast om verschillen in genexpressie te onderzoeken tussen patiënten met reumatoïde artritis (RA) en gezonde controlemonsters.
-Reumatoïde artritis is een chronische auto-immuunziekte die gekenmerkt wordt door ontsteking van gewrichten en weefselschade. Hoewel de exacte oorzaken nog niet volledig bekend zijn, is aangetoond dat veranderingen in genexpressie een belangrijke rol spelen in het ziekteproces (Smolen et al., 2016). Door deze veranderingen in kaart te brengen, kan meer inzicht worden verkregen in de moleculaire mechanismen die betrokken zijn bij RA.
-Het doel van dit onderzoek is om genen te identificeren die differentieel tot expressie komen tussen RA-patiënten en controles. Daarnaast wordt onderzocht welke biologische processen mogelijk betrokken zijn door middel van pathway-analyse en Gene Ontology (GO)-analyse. Deze aanpak draagt bij aan een beter begrip van de biologische processen die ten grondslag liggen aan reumatoïde artritis.
-Om dit doel te bereiken zijn de volgende deelvragen opgesteld:
-  Welke genen zijn significant differentieel tot expressie tussen RA-patiënten en controles?
-  Welke biologische pathways (KEGG) zijn mogelijk betrokken bij deze verschillen?
-  Welke Gene Ontology (GO)-categorieën zijn verrijkt in de set differentieel geëxpresseerde genen?
-
-
-Ozsolak, F., & Milos, P. M. (2011).
-RNA sequencing: advances, challenges and opportunities. Trends in Biotechnology, 29(10), 473–483.
-https://www.sciencedirect.com/science/article/pii/S1367593112001585 
-
-Smolen, J. S., Aletaha, D., & McInnes, I. B. (2016).
-Rheumatoid arthritis. The Lancet, 388(10055), 2023–2038.
-https://www.sciencedirect.com/science/article/abs/pii/S0140673616301738
-
-
-METHODE
-De RNA-seq analyse werd uitgevoerd met behulp van bio-informatica tools in R. De dataset bestond uit RNA-seq reads van patiënten met reumatoïde artritis (RA) en gezonde controles. De sequencingdata bestond uit short-read sequenties (FASTQ-format), verkregen via high-throughput sequencing.
-In de eerste stap werden de reads gemapt op het humane referentiegenoom (GRCh38) met behulp van het Rsubread package. Hierbij werd bepaald waar de reads zich bevinden op het genoom. De resulterende BAM-bestanden werden gesorteerd en geïndexeerd met Rsamtools om efficiënte downstream analyses mogelijk te maken.
-Vervolgens werd met de functie featureCounts het aantal reads per gen bepaald op basis van een GTF-annotatiebestand. Dit resulteerde in een count matrix waarin per gen en per sample het aantal reads werd weergegeven.
-De differentiële genexpressie-analyse werd uitgevoerd met het DESeq2 package. Hiermee werden genen geïdentificeerd die significant verschillen in expressie tussen RA- en controlemonsters. De resultaten werden gevisualiseerd met een volcano plot.
-Daarnaast werd een KEGG pathway-analyse uitgevoerd met het pathview package en een Gene Ontology (GO)-analyse met het goseq package. Deze analyses werden gebruikt om biologische processen en pathways te identificeren die mogelijk betrokken zijn bij de waargenomen verschillen. Het volledige script en de gebruikte data zijn beschikbaar in de bijbehorende GitHub-repository.
-
-FLOWSCHEMA
-
-RESULTATEN
-De differentiële genexpressie analyse werd uitgevoerd om verschillen tussen RA-patiënten en controlemonsters te identificeren. Op basis van een drempelwaarde van een adjusted p-value (padj) < 0.05 en een log2FoldChange groter dan 1 of kleiner dan -1 werden significante genen geselecteerd. In totaal werd één gen significant opgereguleerd in RA-patiënten, terwijl drie genen significant neer-gereguleerd waren. Dit wijst op een relatief beperkt aantal differentieel geëxpresseerde genen binnen deze dataset.
-De meest significante genen werden geïdentificeerd door de resultaten te sorteren op padj. Het gen ND1 vertoonde een sterke toename in expressie in RA-patiënten (log2FoldChange = 3.25; padj = 0.008), terwijl genen zoals TRNN en TRNC een sterke afname in expressie lieten zien (log2FoldChange < -8; padj < 0.015). Daarnaast vertoonden ook LOC101928344 en andere genen een lagere expressie in RA-patiënten.
-De resultaten werden gevisualiseerd met een volcano plot (Figuur 1), waarin de relatie tussen log2FoldChange en significantie wordt weergegeven. Hieruit blijkt dat slechts een klein aantal genen voldoet aan de gekozen significantiedrempels, wat consistent is met het lage aantal gevonden differentieel geëxpresseerde genen.
-De Gene Ontology (GO)-analyse identificeerde geen significant verrijkte categorieën (padj < 0.05). Ook werd geen overlap gevonden tussen de geselecteerde genen en GO-termen, wat mogelijk verklaard kan worden door het geringe aantal differentieel geëxpresseerde genen (n = 9).
-<img width="959" height="479" alt="Schermafbeelding 2026-06-17 162833" src="https://github.com/user-attachments/assets/8252efdc-9a4e-4aad-abef-cc379ba5be59" />
-
-<img width="959" height="484" alt="Schermafbeelding 2026-06-19 023201" src="https://github.com/user-attachments/assets/499a49e5-97a5-482f-b41a-b59bde190161" />
-
-<img width="1799" height="1161" alt="hsa04060 pathview" src="https://github.com/user-attachments/assets/29ee48e2-9759-4163-b6ef-e94e2912387f" />
-
-<img width="1105" height="877" alt="hsa04110 pathview GOED" src="https://github.com/user-attachments/assets/4dfbdbf9-0bda-4c43-9525-8d543c5199f4" />
-
-<img width="1300" height="1842" alt="hsa04640 pathview" src="https://github.com/user-attachments/assets/65024747-3b27-43fa-bbc9-922cd04dc880" />
-
-
-
-CONCLUSIE
-In dit onderzoek is RNA-seq data geanalyseerd om verschillen in genexpressie tussen RA-patiënten en controlemonsters te identificeren. De differentiële expressie analyse liet zien dat slechts een beperkt aantal genen significant verschilde tussen beide groepen. In totaal werd één gen significant opgereguleerd in RA-patiënten en drie genen significant neer-gereguleerd. Dit wijst op relatief kleine veranderingen in genexpressie binnen deze dataset.
-De meest opvallende genen waren onder andere ND1, dat sterk verhoogd tot expressie kwam in RA-patiënten, en TRNN en TRNC, die juist sterk verlaagd waren. Deze resultaten suggereren mogelijke veranderingen in mitochondriale activiteit en RNA-gerelateerde processen, wat relevant kan zijn voor de pathofysiologie van reumatoïde artritis.
-De aanvullende GO-analyse identificeerde geen significant verrijkte biologische processen. Dit kan verklaard worden door het geringe aantal differentieel geëxpresseerde genen en de beperkte overlap met beschikbare GO-annotaties. Hierdoor was de statistische power van de analyse laag.
-Hoewel de resultaten beperkt zijn, tonen ze aan dat RNA-seq analyse geschikt is om verschillen in genexpressie te detecteren. Voor toekomstig onderzoek wordt aanbevolen om grotere datasets te analyseren en meer replicaten te gebruiken, zodat betrouwbare conclusies over betrokken biologische processen en pathways kunnen worden getrokken. Hiermee kan het onderzoek verder bijdragen aan inzicht in de moleculaire mechanismen achter reumatoïde artritis.
-
-
-
-
-
-
-
 ## Introductie
 Reumatoïde artritis (RA) is een chronische auto-immuunziekte waarbij het immuunsysteem het eigen lichaam aanvalt, vooral de gewrichten. Dit leidt tot ontsteking van het gewrichtsslijmvlies, wat pijn en uiteindelijk schade aan de gewrichten veroorzaakt. De precieze oorzaak van RA is nog niet volledig bekend, maar het lijkt een combinatie te zijn van genetische aanleg en omgevingsfactoren (Gabriel, 2001). Ook is bekend dat afweerstoffen en ontstekingsprocessen een grote rol spelen in de ziekte (Radu & Bungau, 2021).
 
@@ -75,15 +15,64 @@ Op basis van bestaande kennis wordt verwacht dat genen die betrokken zijn bij he
 
 
 ## Methode 
+flowschema en tabel patienten
 [script](script/)
 
 
 ## Resultaten
-De differentiële genexpressie-analyse werd uitgevoerd op synoviumweefsel van RA-patiënten en controles met behulp van DESeq2. In totaal werden 3178 genen geïdentificeerd als significant differentieel tot expressie (padj < 0.01). Hiervan waren 1786 genen opgereguleerd in RA en 1297 genen neer-gereguleerd. In de volcano plot (Figuur 1) is te zien dat een groot aantal genen zowel een hoge log₂ fold change als een lage p-waarde heeft, wat wijst op sterke verschillen tussen de groepen. Enkele van de meest significante genen zijn ANKRD30BL, MT-ND6 en RAB3IL1, die sterk verhoogde expressie vertonen in RA.
-Functionele analyse met Gene Ontology (GO) laat zien dat vooral immuun-gerelateerde processen verrijkt zijn (Figuur 2). De meest significante GO-termen zijn onder andere immunoglobulin complex, adaptive immune response, antigen binding en immune system process. Deze resultaten geven aan dat genen die betrokken zijn bij het immuunsysteem en antistofproductie een belangrijke rol spelen in RA. Daarnaast werden ook termen gevonden die wijzen op betrokkenheid van B-cellen en T-cellen, zoals B cell receptor signaling pathway en T cell receptor complex.
-Samen tonen deze resultaten aan dat er bij RA sprake is van een sterke activatie en ontregeling van het immuunsysteem, wat consistent is met het bekende ziektebeeld.
+De differentiële genexpressie-analyse toonde duidelijke verschillen tussen RA-patiënten en controles. In totaal werden 3178 genen geïdentificeerd als significant differentieel tot expressie (padj < 0.01), waarvan 1786 genen opgereguleerd en 1297 genen neer-gereguleerd waren. De volcano plot (Figuur 1) laat zien dat een groot aantal genen sterke veranderingen in expressie vertoont, waaronder ANKRD30BL, MT-ND6 en RAB3IL1, die tot de meest significante behoren.
 
-bijschift hoe je moet aflezen en resultaten straight to the point
+
+<p align="center">
+  <img width="959" height="479" alt="Schermafbeelding" src="https://github.com/user-attachments/assets/8252efdc-9a4e-4aad-abef-cc379ba5be59" />
+  <em>
+    <strong>Figuur 1. Volcano plot van differentiële genexpressie tussen RA en controle.</strong><br>
+    De volcano plot toont de log₂ fold change (x-as) tegenover de −log₁₀ p-waarde (y-as) van 19.944 genen. Elk punt vertegenwoordigt één gen. Genen die significant differentieel tot expressie komen (padj &lt; 0.01 en |log₂ fold change| &gt; 1) zijn weergegeven in rood. Groene punten geven genen weer met een hoge fold change maar zonder significante p-waarde, blauwe punten tonen genen met een lage p-waarde maar kleine fold change, en grijze punten zijn niet significant (NS). Verticale stippellijnen geven de grenswaarden voor log₂ fold change aan, en de horizontale lijn geeft de significatiedrempel aan. Enkele van de meest significante genen zijn gelabeld, waaronder ANKRD30BL, MT-ND6 en RAB3IL1. Data zijn afkomstig van RNA-seq analyse van 4 RA- en 4 controlemonsters.
+  </em>
+</p>
+
+
+De KEGG pathway-analyse liet zien dat meerdere biologische routes betrokken zijn bij RA. In de cytokine-cytokine receptor interactie pathway (Figuur 2) werden verschillende genen met veranderde expressie waargenomen, het zelfde in de hematopoietische cel lineage (Figuur 3) en de celcyclus pathway (Figuur 4). Deze pathways bevatten genen die betrokken zijn bij immuunsignalering en celprocessen.
+
+
+<p align="center">
+  <img width="1799" height="1161" alt="hsa04060 pathview" src="https://github.com/user-attachments/assets/29ee48e2-9759-4163-b6ef-e94e2912387f" />
+  <em>
+    <strong>Figuur 2. KEGG pathway ‘cytokine-cytokine receptor interaction’ (hsa04060) voor RA versus controle.</strong><br>
+Het figuur toont genexpressieverschillen binnen de cytokine-signaleringsroute gebaseerd op RNA-seq data. Elk vakje is een gen en is ingekleurd op basis van de log₂ fold change. Rood geeft genen weer met hogere expressie in RA, terwijl groen genen met lagere expressie in RA aanduidt. Witte of grijze vakjes geven genen weer zonder significant verschil of zonder data. De kleurenbalk rechtsboven geeft de schaal van log₂ fold change weer (van −2 tot +2). De analyse is uitgevoerd met het pathview-package, waarbij gebruik is gemaakt van KEGG pathway annotatie. De data zijn afkomstig van synoviumweefsel van 4 RA-patiënten en 4 controles.
+  </em>
+</p>
+
+
+<p align="center">
+  <img width="1300" height="1842" alt="hsa04640 pathview" src="https://github.com/user-attachments/assets/65024747-3b27-43fa-bbc9-922cd04dc880" />
+  <em>
+    <strong>Figuur 3. KEGG pathway ‘hematopoietic cell lineage’ (hsa04640) voor RA versus controle.</strong><br>
+Het figuur toont genexpressie binnen de differentiatie van immuuncellen gebaseerd op RNA-seq data. Elk vakje vertegenwoordigt een gen en is ingekleurd op basis van de log₂ fold change. Rood geeft genen met hogere expressie in RA weer en groen genen met lagere expressie in RA. De schaal van de expressieverandering wordt weergegeven in de kleurenbalk rechtsboven (−1 tot +1). Witte vakjes geven genen weer waarvoor geen significant verschil of geen data beschikbaar is. De figuur is gegenereerd met pathview op basis van KEGG pathway annotatie. De data zijn afkomstig van synoviumweefsel van 4 RA-patiënten en 4 controles.
+  </em>
+</p>
+
+
+  <p align="center">
+ <img width="1105" height="877" alt="hsa04110 pathview GOED" src="https://github.com/user-attachments/assets/4dfbdbf9-0bda-4c43-9525-8d543c5199f4" />
+  <em>
+    <strong>Figuur 4. KEGG pathway ‘cell cycle’ (hsa04110) voor RA versus controle.</strong><br>
+In dit figuur wordt de expressie van genen binnen de celcyclus weergegeven op basis van RNA-seq data. Elk vakje stelt een gen voor en is gekleurd volgens de log₂ fold change tussen RA en controle. Rode vakjes geven verhoogde expressie in RA weer, terwijl groene vakjes verlaagde expressie in RA aangeven. De kleurenbalk rechtsboven toont de schaal van log₂ fold change (−2 tot +2). Niet-ingekleurde vakjes geven genen weer zonder significant verschil of zonder beschikbare data. De pathwayvisualisatie is gegenereerd met pathview op basis van KEGG annotatie. De data zijn afkomstig van synoviumweefsel van 4 RA-patiënten en 4 controles.
+  </em>
+</p>
+
+
+De GO-analyse bevestigde deze bevindingen en toonde 9 significante GO-termen (padj < 0.01). De meest significante termen zijn weergegeven in Figuur 2 en omvatten onder andere immunoglobulin complex, adaptive immune response, antigen binding en immune system process. Daarnaast werden ook termen geïdentificeerd die verband houden met B-cel- en T-celsignalering.
+Samen laten deze resultaten zien dat genexpressieverschillen tussen RA en controles voornamelijk voorkomen in processen die gerelateerd zijn aan het immuunsysteem.
+
+
+<p align="center">
+  <img width="959" height="484" alt="Schermafbeelding 2026-06-19 023201" src="https://github.com/user-attachments/assets/499a49e5-97a5-482f-b41a-b59bde190161" />
+  <em>
+    <strong>Figuur 2. Top significante GO-termen bij RA ten opzichte van controle.</strong><br>
+De staafdiagram toont de tien meest significante Gene Ontology (GO)-termen op basis van differentieel tot expressie komende genen (padj < 0.01). De x-as toont de −log₁₀ van de adjusted p-waarde, waarbij hogere waarden betekenen dat de GO-termen statistisch sterker significant zijn. De y-as toont de bijbehorende GO-termen, waaronder immunoglobulin complex, adaptive immune response en antigen binding. De analyse is uitgevoerd met het goseq-package, waarbij gecorrigeerd is voor lengtebias. Alleen genen met een adjusted p-waarde < 0.01 zijn meegenomen in de analyse. Data zijn afkomstig van RNA-seq analyse van synoviumweefsel van 4 RA-patiënten en 4 controles.
+  </em>
+</p>
 
 
 ## Conclusie
