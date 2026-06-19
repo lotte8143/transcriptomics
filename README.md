@@ -70,6 +70,8 @@ De differentiële genexpressie-analyse werd uitgevoerd op synoviumweefsel van RA
 Functionele analyse met Gene Ontology (GO) laat zien dat vooral immuun-gerelateerde processen verrijkt zijn (Figuur 2). De meest significante GO-termen zijn onder andere immunoglobulin complex, adaptive immune response, antigen binding en immune system process. Deze resultaten geven aan dat genen die betrokken zijn bij het immuunsysteem en antistofproductie een belangrijke rol spelen in RA. Daarnaast werden ook termen gevonden die wijzen op betrokkenheid van B-cellen en T-cellen, zoals B cell receptor signaling pathway en T cell receptor complex.
 Samen tonen deze resultaten aan dat er bij RA sprake is van een sterke activatie en ontregeling van het immuunsysteem, wat consistent is met het bekende ziektebeeld.
 
+bijschift hoe je moet aflezen en resultaten straight to the point
+
 
 Conclusie**
 
