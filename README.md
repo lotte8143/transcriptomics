@@ -53,7 +53,7 @@ Hoewel de resultaten beperkt zijn, tonen ze aan dat RNA-seq analyse geschikt is 
 
 
 
-##introductie
+## Introductie
 Reumatoïde artritis (RA) is een chronische auto-immuunziekte waarbij het immuunsysteem het eigen lichaam aanvalt, vooral de gewrichten. Dit leidt tot ontsteking van het gewrichtsslijmvlies, wat pijn en uiteindelijk schade aan de gewrichten veroorzaakt. De precieze oorzaak van RA is nog niet volledig bekend, maar het lijkt een combinatie te zijn van genetische aanleg en omgevingsfactoren (Gabriel, 2001). Ook is bekend dat afweerstoffen en ontstekingsprocessen een grote rol spelen in de ziekte (Radu & Bungau, 2021).
 
 Met behulp van transcriptomics kan onderzocht worden welke genen anders tot expressie komen bij mensen met RA in vergelijking met gezonde personen. Dit geeft inzicht in de onderliggende biologische processen en kan helpen om beter te begrijpen hoe de ziekte ontstaat en zich ontwikkelt.
@@ -63,11 +63,11 @@ In dit onderzoek wordt gekeken naar genexpressie in synoviumweefsel van RA-pati�
 Op basis van bestaande kennis wordt verwacht dat genen die betrokken zijn bij het immuunsysteem en ontstekingsreacties verhoogd tot expressie zullen zijn bij RA-patiënten.
 
 
-##methode 
+## Methode 
 [script](script/)
 
 
-##Resultaten
+## Resultaten
 De differentiële genexpressie-analyse werd uitgevoerd op synoviumweefsel van RA-patiënten en controles met behulp van DESeq2. In totaal werden 3178 genen geïdentificeerd als significant differentieel tot expressie (padj < 0.01). Hiervan waren 1786 genen opgereguleerd in RA en 1297 genen neer-gereguleerd. In de volcano plot (Figuur 1) is te zien dat een groot aantal genen zowel een hoge log₂ fold change als een lage p-waarde heeft, wat wijst op sterke verschillen tussen de groepen. Enkele van de meest significante genen zijn ANKRD30BL, MT-ND6 en RAB3IL1, die sterk verhoogde expressie vertonen in RA.
 Functionele analyse met Gene Ontology (GO) laat zien dat vooral immuun-gerelateerde processen verrijkt zijn (Figuur 2). De meest significante GO-termen zijn onder andere immunoglobulin complex, adaptive immune response, antigen binding en immune system process. Deze resultaten geven aan dat genen die betrokken zijn bij het immuunsysteem en antistofproductie een belangrijke rol spelen in RA. Daarnaast werden ook termen gevonden die wijzen op betrokkenheid van B-cellen en T-cellen, zoals B cell receptor signaling pathway en T cell receptor complex.
 Samen tonen deze resultaten aan dat er bij RA sprake is van een sterke activatie en ontregeling van het immuunsysteem, wat consistent is met het bekende ziektebeeld.
@@ -75,7 +75,7 @@ Samen tonen deze resultaten aan dat er bij RA sprake is van een sterke activatie
 bijschift hoe je moet aflezen en resultaten straight to the point
 
 
-##Conclusie
+## Conclusie
 
 In dit onderzoek is gekeken naar verschillen in genexpressie tussen RA-patiënten en gezonde controles met behulp van RNA-seq analyse. De resultaten laten zien dat er duidelijke verschillen zijn in genexpressie, waarbij een groot aantal genen significant op- of neer-gereguleerd is. De differentiële expressie-analyse en de volcano plot tonen dat veel genen sterk veranderd zijn bij RA.
 
