@@ -26,8 +26,8 @@ In dit onderzoek werd de genexpressie van synoviumbiopten van patiënten met reu
 <p align="center">
   <strong>Tabel 1. Overzicht van de RNA-seq samples gebruikt in de analyse</strong><br><br>
   <img width="655" height="248" alt="Schermafbeelding 2026-06-19 121709" src="https://github.com/user-attachments/assets/78cb6a64-5278-419a-ae07-f40a3baa38ad" />
-  
   <em>
+
 Toelichting: De tabel toont de gebruikte RNA-seq samples afkomstig van synoviumweefsel. In totaal zijn 8 samples geanalyseerd, waarvan 4 controles (Normal) en 4 RA-patiënten (Rheumatoid arthritis, established &gt;12 maanden). Alle samples zijn afkomstig van vrouwelijke individuen. Sample ID verwijst naar de accessionnummers uit de oorspronkelijke dataset (Platzer et al., 2019).
   </em>
 </p>
