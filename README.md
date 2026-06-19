@@ -16,8 +16,31 @@ Op basis van bestaande kennis wordt verwacht dat genen die betrokken zijn bij he
 
 ## Methode 
 flowschema en tabel patienten
+
+
 [script](script/)
 
+
+In dit onderzoek werd genexpressie geanalyseerd in synoviumweefsel van patiënten met reumatoïde artritis (RA) en gezonde controles. De RNA‑seq dataset is gebaseerd op eerder gepubliceerd onderzoek (Platzer et al., 2019). De dataset bestaat uit 8 samples, waaronder 4 controlemonsters en 4 RA-monsters, zoals weergegeven in Tabel 1. Voor de analyse is gebruik gemaakt van single-end FASTQ bestanden.
+
+
+<p align="center">
+  <strong>Tabel 1. Overzicht van de RNA-seq samples gebruikt in de analyse</strong><br><br>
+  <img width="655" height="248" alt="Schermafbeelding 2026-06-19 121709" src="https://github.com/user-attachments/assets/78cb6a64-5278-419a-ae07-f40a3baa38ad" />
+  
+  <em>
+Toelichting: De tabel toont de gebruikte RNA-seq samples afkomstig van synoviumweefsel. In totaal zijn 8 samples geanalyseerd, waarvan 4 controles (Normal) en 4 RA-patiënten (Rheumatoid arthritis, established &gt;12 maanden). Alle samples zijn afkomstig van vrouwelijke individuen. Sample ID verwijst naar de accessionnummers uit de oorspronkelijke dataset (Platzer et al., 2019).
+  </em>
+</p>
+
+
+De analyses zijn uitgevoerd in R met Bioconductor‑packages, waaronder Rsubread (https://bioconductor.org/packages/Rsubread), DESeq2 (https://bioconductor.org/packages/DESeq2), pathview (https://bioconductor.org/packages/pathview) en goseq (https://bioconductor.org/packages/goseq).
+
+De reads zijn gemapt tegen het humane referentiegenoom GRCh38 (GCF_000001405.40) (https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_000001405.40/) met behulp van align() na het bouwen van een index met buildindex(). De verkregen BAM-bestanden zijn gesorteerd en geïndexeerd met sortBam() en indexBam(). Vervolgens werd met featureCounts() een count matrix gegenereerd.
+
+De differentiële genexpressie-analyse werd uitgevoerd met DESeq2 (DESeqDataSetFromMatrix() en DESeq()), waarbij genen met een adjusted p-value < 0.01 als significant werden beschouwd. Visualisatie gebeurde met EnhancedVolcano().
+
+Voor functionele interpretatie zijn KEGG pathways geanalyseerd met pathview() en Gene Ontology (GO) analyse uitgevoerd met goseq(), waarbij gecorrigeerd werd voor lengtebias met nullp(). Het volledige script is beschikbaar via GitHub voor reproduceerbaarheid.
 
 ## Resultaten
 De differentiële genexpressie-analyse toonde duidelijke verschillen tussen RA-patiënten en controles. In totaal werden 3178 genen geïdentificeerd als significant differentieel tot expressie (padj < 0.01), waarvan 1786 genen opgereguleerd en 1297 genen neer-gereguleerd waren. De volcano plot (Figuur 1) laat zien dat een groot aantal genen sterke veranderingen in expressie vertoont, waaronder ANKRD30BL, MT-ND6 en RAB3IL1, die tot de meest significante behoren.
