@@ -1,1 +1,370 @@
+############################################################
+# Transcriptomics analyse RA vs control
+# Van FASTQ naar differentiële expressie en GO-analyse
+# Auteur: Lotte Huitenga
+############################################################
+
+#########################
+# 1. Setup
+#########################
+
+# Working directory
+setwd("C:/Users/lotte/OneDrive/TRANSCRIPTOMICS LOTTE HUITENGA CASUS")
+getwd()
+
+# Benodigde packages installeren (eenmalig) en laden
+if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
+
+packages_bioc <- c("Rsubread", "Rsamtools", "DESeq2", "KEGGREST", "EnhancedVolcano", "pathview", "goseq", "org.Hs.eg.db")
+for (pkg in packages_bioc) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    BiocManager::install(pkg)}}
+
+library(Rsubread)
+library(Rsamtools)
+library(DESeq2)
+library(KEGGREST)
+library(EnhancedVolcano)
+library(pathview)
+library(goseq)
+library(org.Hs.eg.db)
+
+# Controle van beschikbare bestanden
+list.files()
+
+
+#########################
+# 2. Referentiegenoom indexeren
+#########################
+
+# Referentiegenoom:
+# GCF_000001405.40_GRCh38.p14_genomic.fna
+
+buildindex(
+  basename   = "ref_human",
+  reference  = "GCF_000001405.40_GRCh38.p14_genomic.fna",
+  memory     = 4000,
+  indexSplit = TRUE)
+
+
+#########################
+# 3. Mapping van raw reads
+#########################
+
+# In deze analyse is single-end gebruikt:
+# alleen readfile1 wordt gemapt
+
+sample_fastq <- c(
+  RA1        = "SRR4785819_1_subset40k.fastq",
+  RA2        = "SRR4785820_1_subset40k.fastq",
+  RA3        = "SRR4785828_1_subset40k.fastq",
+  RA4        = "SRR4785831_1_subset40k.fastq",
+  control1RA = "SRR4785979_1_subset40k.fastq",
+  control2RA = "SRR4785980_1_subset40k.fastq",
+  control3RA = "SRR4785986_1_subset40k.fastq",
+  control4RA = "SRR4785988_1_subset40k.fastq")
+
+for (sample_name in names(sample_fastq)) {
+  align(
+    index       = "ref_human",
+    readfile1   = sample_fastq[[sample_name]],
+    output_file = paste0(sample_name, ".BAM"))}
+
+
+#########################
+# 4. Sorteren en indexeren van BAM-bestanden
+#########################
+
+samples <- names(sample_fastq)
+
+# BAM sorteren
+lapply(samples, function(s) {
+  sortBam(
+    file        = paste0(s, ".BAM"),
+    destination = paste0(s, ".sorted"))})
+
+# Gesorteerde BAM indexeren
+lapply(samples, function(s) {
+  indexBam(
+    file = paste0(s, ".sorted.bam"))})
+
+# Optioneel: visualisatie in IGV
+# Gebruik in IGV bij voorkeur het standaardgenoom Human (GRCh38/hg38)
+# en laad vervolgens een .sorted.bam bestand als track.
+
+
+#########################
+# 5. Count matrix genereren
+#########################
+
+allsamples <- paste0(samples, ".sorted.bam")
+
+count_matrix <- featureCounts(
+  files                = allsamples,
+  annot.ext            = "genomic.gtf",
+  isGTFAnnotationFile  = TRUE,
+  isPairedEnd          = FALSE,
+  strandSpecific       = 0,
+  GTF.featureType      = "exon",
+  GTF.attrType         = "gene_id",
+  useMetaFeatures      = TRUE)
+
+# Count matrix extraheren
+counts <- count_matrix$counts
+
+# Duidelijke kolomnamen instellen
+colnames(counts) <- c("RA1", "RA2", "RA3", "RA4", "control1", "control2", "control3", "control4")
+
+# Opslaan voor hergebruik
+write.csv(counts, "RA_countmatrix.csv")
+
+
+#########################
+# 6. Metadata opstellen
+#########################
+
+treatment_table <- data.frame(
+  treatment = c("RA", "RA", "RA", "RA", "control", "control", "control", "control"))
+
+rownames(treatment_table) <- colnames(counts)
+
+
+#########################
+# 7. Differentiële expressie analyse met DESeq2
+#########################
+
+# Count matrix opnieuw inladen (handig voor losse runs)
+counts <- read.table("count_matrix_RA.txt", header = TRUE, row.names = 1)
+counts <- as.matrix(counts)
+colnames(counts)
+treatment_table <- data.frame(
+  treatment = c("RA","RA","RA","RA",
+                "control","control","control","control"))
+rownames(treatment_table) <- colnames(counts)
+
+dds <- DESeqDataSetFromMatrix(
+  countData = counts,
+  colData   = treatment_table,
+  design    = ~ treatment)
+
+dds <- DESeq(dds)
+resultaten <- results(dds)
+sig_res_001 <- resultaten[!is.na(resultaten$padj) & resultaten$padj < 0.01, ]
+# Resultaten sorteren op adjusted p-value
+sig_res_001 <- sig_res_001[order(sig_res_001$padj), ]
+head(sig_res_001)
+
+# Opslaan
+write.csv(as.data.frame(sig_res_001), "DE_genes_padj_0.01.csv")
+
+
+resultaten_clean <- resultaten[!is.na(resultaten$padj), ]
+# Overzicht van topgenen
+hoogste_fold_change <- resultaten_clean[order(resultaten_clean$log2FoldChange, decreasing = TRUE), ]
+laagste_fold_change <- resultaten_clean[order(resultaten_clean$log2FoldChange, decreasing = FALSE), ]
+laagste_p_waarde <- resultaten_clean[order(resultaten_clean$padj, decreasing = FALSE), ]
+
+head(hoogste_fold_change)
+head(laagste_fold_change)
+head(laagste_p_waarde)
+
+#########################
+# 8. Samenvattende statistiek
+#########################
+
+# Aantal significant opgereguleerde genen in RA
+sum(resultaten_clean$padj < 0.01 & resultaten_clean$log2FoldChange > 1)
+
+# Aantal significant neer-gereguleerde genen in RA
+sum(resultaten_clean$padj < 0.01 & resultaten_clean$log2FoldChange < -1)
+
+#########################
+# 9. Volcano plot
+#########################
+
+EnhancedVolcano(
+  resultaten_clean,
+  lab = rownames(resultaten_clean),
+  x   = "log2FoldChange",
+  y   = "padj",
+  pCutoff = 0.01,
+  FCcutoff = 1)
+
+dev.copy(png, "Volcanoplot_RA_vs_control.goed.png", width = 8, height = 10, units = "in", res = 500)
+dev.off()
+
+
+#########################
+# 10. KEGG pathway-analyse
+#########################
+
+# Voorbeeld: humane cell cycle pathway
+library(org.Hs.eg.db)
+
+# convert SYMBOL → ENTREZ
+entrez_ids <- mapIds(
+  org.Hs.eg.db,
+  keys = rownames(resultaten_clean),
+  column = "ENTREZID",
+  keytype = "SYMBOL",
+  multiVals = "first")
+
+# maak named vector
+gene_data <- resultaten_clean$log2FoldChange
+names(gene_data) <- entrez_ids
+
+# verwijder NA’s
+gene_data <- gene_data[!is.na(names(gene_data))]
+
+pathview(
+  gene.data  = gene_data,
+  pathway.id = "hsa04110",
+  species    = "hsa",
+  gene.idtype = "entrez",
+  limit      = list(gene = 2))
+
+# Voorbeeld: opzoeken in welke pathways TP53 voorkomt
+keggLink("pathway", "hsa:7157")
+
+# hematopoietic cell lineage
+pathview(
+  gene.data  = gene_data,
+  pathway.id = "hsa04640",  
+  species    = "hsa",
+  gene.idtype = "entrez")
+
+keggLink("pathway", "hsa:7157")
+
+# cytokine-cytokine receptor interaction
+pathview(
+  gene.data  = gene_data,
+  pathway.id = "hsa04060",  
+  species    = "hsa",
+  gene.idtype = "entrez",
+  limit      = list(gene = 2))
+
+keggLink("pathway", "hsa:7124")
+
+#########################
+# 11. GO-analyse met goseq
+#########################
+
+library(org.Hs.eg.db)
+
+# RESULTATEN voorbereiden
+res <- as.data.frame(resultaten_clean)
+
+# SYMBOL -> ENTREZ ID
+entrez_ids <- mapIds(
+  org.Hs.eg.db,
+  keys = rownames(res),
+  column = "ENTREZID",
+  keytype = "SYMBOL",
+  multiVals = "first")
+
+# toevoegen aan dataframe
+res$entrez <- entrez_ids
+
+# NA's verwijderen
+res <- res[!is.na(res$entrez), ]
+
+# GENE VECTOR (significante genen)
+gene_vector <- as.integer(res$padj < 0.01)
+names(gene_vector) <- res$entrez
+
+# BIAS VECTOR
+bias_vector <- res$baseMean
+names(bias_vector) <- res$entrez
+
+bias_vector[is.na(bias_vector)] <- 1
+bias_vector[bias_vector <= 0]   <- 1
+
+# Probability weighting function
+pwf <- nullp(gene_vector, bias.data = bias_vector)
+
+# ---------------------------
+# HANDMATIGE GO ANNOTATIE
+# ---------------------------
+
+go_annot <- AnnotationDbi::select(
+  org.Hs.eg.db,
+  keys = res$entrez,
+  columns = c("GO"),
+  keytype = "ENTREZID")
+
+# NA GO-termen weg
+go_annot <- go_annot[!is.na(go_annot$GO), ]
+
+# gene2cat object maken
+gene2cat <- split(go_annot$GO, go_annot$ENTREZID)
+
+# ---------------------------
+# GO enrichment
+# ---------------------------
+
+go_results <- goseq(
+  pwf,
+  gene2cat = gene2cat)
+
+# Multiple testing correctie
+go_results$padj <- p.adjust(go_results$over_represented_pvalue, method = "BH")
+
+# Significante GO-termen
+go_sig <- go_results[!is.na(go_results$padj) & go_results$padj < 0.01, ]
+go_sig <- go_sig[order(go_sig$padj), ]
+
+# Top GO-termen
+go_top <- go_results[order(go_results$over_represented_pvalue), ]
+
+# Opslaan
+write.csv(go_results, "GO_all_results_RA_vs_control.csv")
+write.csv(go_top, "GO_top_terms_RA_vs_control.csv")
+write.csv(go_sig, "GO_sig_terms_RA_vs_control.csv")
+
+# Overzicht
+nrow(go_sig)
+head(go_top, 10)
+sum(gene_vector == 1)
+sum(go_results$numDEInCat > 0)
+table(go_results$numDEInCat > 0)
+head(go_sig)
+library(ggplot2)
+
+#########################
+# 12. Staafdiagram GO-analyse met ggplot2
+#########################
+
+# Top significante GO-termen selecteren
+go_plot <- go_sig[order(go_sig$padj), ]
+go_plot <- head(go_plot, 10)
+
+# -log10 adjusted p-value berekenen
+go_plot$minus_log10_padj <- -log10(go_plot$padj)
+
+# Term volgorde instellen
+go_plot$term <- factor(
+  go_plot$term,
+  levels = rev(go_plot$term))
+
+# Plot maken
+p <- ggplot(go_plot, aes(x = term, y = minus_log10_padj)) +
+  geom_bar(stat = "identity", fill = "steelblue") +
+  coord_flip() +
+  labs(
+    title = "Top significante GO-termen RA vs control",
+    x = "GO-term",
+    y = "-log10 adjusted p-value"
+  ) +
+  theme_minimal()
+
+# Plot tonen
+p
+
+# Plot opslaan
+ggsave(
+  "GO_barplot_RA_vs_control.png",
+  plot = p,
+  width = 10,
+  height = 7,
+  dpi = 500)
 
