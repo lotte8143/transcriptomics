@@ -40,6 +40,17 @@ De differentiële genexpressie analyse werd uitgevoerd om verschillen tussen RA-
 De meest significante genen werden geïdentificeerd door de resultaten te sorteren op padj. Het gen ND1 vertoonde een sterke toename in expressie in RA-patiënten (log2FoldChange = 3.25; padj = 0.008), terwijl genen zoals TRNN en TRNC een sterke afname in expressie lieten zien (log2FoldChange < -8; padj < 0.015). Daarnaast vertoonden ook LOC101928344 en andere genen een lagere expressie in RA-patiënten.
 De resultaten werden gevisualiseerd met een volcano plot (Figuur 1), waarin de relatie tussen log2FoldChange en significantie wordt weergegeven. Hieruit blijkt dat slechts een klein aantal genen voldoet aan de gekozen significantiedrempels, wat consistent is met het lage aantal gevonden differentieel geëxpresseerde genen.
 De Gene Ontology (GO)-analyse identificeerde geen significant verrijkte categorieën (padj < 0.05). Ook werd geen overlap gevonden tussen de geselecteerde genen en GO-termen, wat mogelijk verklaard kan worden door het geringe aantal differentieel geëxpresseerde genen (n = 9).
+<img width="959" height="479" alt="Schermafbeelding 2026-06-17 162833" src="https://github.com/user-attachments/assets/8252efdc-9a4e-4aad-abef-cc379ba5be59" />
+
+<img width="959" height="484" alt="Schermafbeelding 2026-06-19 023201" src="https://github.com/user-attachments/assets/499a49e5-97a5-482f-b41a-b59bde190161" />
+
+<img width="1799" height="1161" alt="hsa04060 pathview" src="https://github.com/user-attachments/assets/29ee48e2-9759-4163-b6ef-e94e2912387f" />
+
+<img width="1105" height="877" alt="hsa04110 pathview GOED" src="https://github.com/user-attachments/assets/4dfbdbf9-0bda-4c43-9525-8d543c5199f4" />
+
+<img width="1300" height="1842" alt="hsa04640 pathview" src="https://github.com/user-attachments/assets/65024747-3b27-43fa-bbc9-922cd04dc880" />
+
+
 
 CONCLUSIE
 In dit onderzoek is RNA-seq data geanalyseerd om verschillen in genexpressie tussen RA-patiënten en controlemonsters te identificeren. De differentiële expressie analyse liet zien dat slechts een beperkt aantal genen significant verschilde tussen beide groepen. In totaal werd één gen significant opgereguleerd in RA-patiënten en drie genen significant neer-gereguleerd. Dit wijst op relatief kleine veranderingen in genexpressie binnen deze dataset.
