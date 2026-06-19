@@ -126,19 +126,19 @@ treatment_table <- data.frame(
   treatment = c("RA", "RA", "RA", "RA", "control", "control", "control", "control"))
 
 rownames(treatment_table) <- colnames(counts)
-
+write.csv(treatment_table, "0.1_metadata.csv", row.names =TRUE)
 
 #########################
 # 7. Differentiële expressie analyse met DESeq2
 #########################
 
-# Count matrix opnieuw inladen (handig voor losse runs)
+# Count matrix opnieuw inladen 
 counts <- read.table("count_matrix_RA.txt", header = TRUE, row.names = 1)
 counts <- as.matrix(counts)
 colnames(counts)
 treatment_table <- data.frame(
-  treatment = c("RA","RA","RA","RA",
-                "control","control","control","control"))
+  treatment = c("RA", "RA", "RA", "RA", "control", "control", "control", "control"))
+
 rownames(treatment_table) <- colnames(counts)
 
 dds <- DESeqDataSetFromMatrix(
@@ -352,8 +352,7 @@ p <- ggplot(go_plot, aes(x = term, y = minus_log10_padj)) +
   labs(
     title = "Top significante GO-termen RA vs control",
     x = "GO-term",
-    y = "-log10 adjusted p-value"
-  ) +
+    y = "-log10 adjusted p-value") +
   theme_minimal()
 
 # Plot tonen
