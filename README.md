@@ -37,7 +37,7 @@ Voor de biologische interpretatie van de resultaten werd een KEGG pathway-analys
 
 Daarnaast werd een Gene Ontology (GO) analyse uitgevoerd met het goseq package (v1.64.0), waarbij rekening werd gehouden met lengtebias van genen. Het KEGGREST package (v1.52.0) werd gebruikt voor het opvragen van aanvullende pathway-informatie. 
 
-Zie [script](script/) voor de uitwerking van de methode, zie verder ook de count en de genomic.gtf
+Zie [script](script/) voor de uitwerking van de methode, zie verder ook de [data](count_matrix_RA (1).txt) en de genomic.gtf
 
 ## Resultaten
 De differentiële genexpressie-analyse toonde duidelijke verschillen tussen RA-patiënten en controles. In totaal werden 3178 genen geïdentificeerd als significant differentieel tot expressie (padj < 0.01), waarvan 1786 genen opgereguleerd en 1297 genen neer-gereguleerd waren. De volcano plot (Figuur 1) laat zien dat een groot aantal genen sterke veranderingen in expressie vertoont, waaronder ANKRD30BL, MT-ND6 en RAB3IL1, die tot de meest significante behoren.
