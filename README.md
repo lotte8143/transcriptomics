@@ -81,7 +81,7 @@ Een beperking van dit onderzoek is het gebruik van een relatief kleine dataset e
 
 Samenvattend laat dit onderzoek zien dat transcriptomics een waardevolle methode is om inzicht te krijgen in de onderliggende mechanismen van RA, en kan bijdragen aan het ontwikkelen van betere behandelingen.
 
-of alles mooi op elkaar aansluit (laatste polish voor inleveren)
+versie nummers en beetje packages noemen welke je hebt gebruikt niet de codes en vertellen hoe en wat je ermee hebt gedaan verwijzen naar script feature counts tabel met patieten
 
 
 
