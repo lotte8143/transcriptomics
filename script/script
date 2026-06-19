@@ -87,10 +87,6 @@ lapply(samples, function(s) {
   indexBam(
     file = paste0(s, ".sorted.bam"))})
 
-# Optioneel: visualisatie in IGV
-# Gebruik in IGV bij voorkeur het standaardgenoom Human (GRCh38/hg38)
-# en laad vervolgens een .sorted.bam bestand als track.
-
 
 #########################
 # 5. Count matrix genereren
@@ -149,6 +145,7 @@ dds <- DESeqDataSetFromMatrix(
 dds <- DESeq(dds)
 resultaten <- results(dds)
 sig_res_001 <- resultaten[!is.na(resultaten$padj) & resultaten$padj < 0.01, ]
+
 # Resultaten sorteren op adjusted p-value
 sig_res_001 <- sig_res_001[order(sig_res_001$padj), ]
 head(sig_res_001)
@@ -156,8 +153,8 @@ head(sig_res_001)
 # Opslaan
 write.csv(as.data.frame(sig_res_001), "DE_genes_padj_0.01.csv")
 
-
 resultaten_clean <- resultaten[!is.na(resultaten$padj), ]
+
 # Overzicht van topgenen
 hoogste_fold_change <- resultaten_clean[order(resultaten_clean$log2FoldChange, decreasing = TRUE), ]
 laagste_fold_change <- resultaten_clean[order(resultaten_clean$log2FoldChange, decreasing = FALSE), ]
@@ -197,9 +194,6 @@ dev.off()
 # 10. KEGG pathway-analyse
 #########################
 
-# Voorbeeld: humane cell cycle pathway
-library(org.Hs.eg.db)
-
 # convert SYMBOL → ENTREZ
 entrez_ids <- mapIds(
   org.Hs.eg.db,
@@ -215,6 +209,7 @@ names(gene_data) <- entrez_ids
 # verwijder NA’s
 gene_data <- gene_data[!is.na(names(gene_data))]
 
+# humane cell cycle pathway
 pathview(
   gene.data  = gene_data,
   pathway.id = "hsa04110",
@@ -222,7 +217,6 @@ pathview(
   gene.idtype = "entrez",
   limit      = list(gene = 2))
 
-# Voorbeeld: opzoeken in welke pathways TP53 voorkomt
 keggLink("pathway", "hsa:7157")
 
 # hematopoietic cell lineage
@@ -247,8 +241,6 @@ keggLink("pathway", "hsa:7124")
 #########################
 # 11. GO-analyse met goseq
 #########################
-
-library(org.Hs.eg.db)
 
 # RESULTATEN voorbereiden
 res <- as.data.frame(resultaten_clean)
