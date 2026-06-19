@@ -18,7 +18,19 @@ Op basis van bestaande kennis wordt verwacht dat genen die betrokken zijn bij he
 flowschema en tabel patienten
 
 
-[script](script/)
+
+
+In dit onderzoek werd de genexpressie van synoviumbiopten van patiënten met reumatoïde artritis (RA) vergeleken met die van gezonde controles. De gebruikte RNA-seq dataset is afkomstig uit eerder gepubliceerd onderzoek (Platzer et al., 2019) en werd verkregen via de NCBI Sequence Read Archive. De dataset bestond uit 8 samples, verdeeld over een controlegroep en een RA-groep (zie Tabel 1). De analyse werd uitgevoerd op single-end raw sequencing reads in FASTQ-formaat.
+
+De RNA-seq data werden geanalyseerd in de programmeeromgeving R (v4.6.0) met behulp van verschillende Bioconductor-packages, waaronder Rsubread (v2.26.0), Rsamtools (v2.28.0), DESeq2 (v1.52.0), KEGGREST (v1.52.0), EnhancedVolcano (v1.30.0), pathview (v1.52.0), goseq (v1.64.0) en org.Hs.eg.db (v3.23.1). Allereerst werd het humane referentiegenoom GRCh38 (GCF_000001405.40; https://www.ncbi.nlm.nih.gov/datasets/genome/GCF_000001405.40/) voorbereid en gebruikt om de sequencing reads te aligneren. De verkregen alignments werden vervolgens verwerkt tot gesorteerde en geïndexeerde BAM-bestanden, zodat de mappingresultaten geschikt waren voor verdere analyse.
+
+Vervolgens werd op basis van deze alignments een count matrix opgesteld, waarin het aantal reads per gen werd bepaald. Deze matrix vormde de basis voor de differentiële genexpressie-analyse met behulp van het DESeq2 package (v1.52.0), waarbij genen met een adjusted p-waarde kleiner dan 0.01 als significant differentieel tot expressie werden beschouwd. De resultaten van deze analyse werden gevisualiseerd met behulp van het EnhancedVolcano package (v1.30.0).
+
+Voor de biologische interpretatie van de resultaten werd een KEGG pathway-analyse uitgevoerd met het pathview package (v1.52.0), waarbij genidentificatie werd omgezet naar Entrez-ID’s met behulp van het org.Hs.eg.db package (v3.23.1). 
+
+Daarnaast werd een Gene Ontology (GO) analyse uitgevoerd met het goseq package (v1.64.0), waarbij rekening werd gehouden met lengtebias van genen. Het KEGGREST package (v1.52.0) werd gebruikt voor het opvragen van aanvullende pathway-informatie. 
+
+Zie [script](script/) voor de uitwerking van de methode, zie verder ook de count en de genomic.gtf
 
 
 In dit onderzoek werd genexpressie geanalyseerd in synoviumweefsel van patiënten met reumatoïde artritis (RA) en gezonde controles. De RNA‑seq dataset is gebaseerd op eerder gepubliceerd onderzoek (Platzer et al., 2019). De dataset bestaat uit 8 samples, waaronder 4 controlemonsters en 4 RA-monsters, zoals weergegeven in Tabel 1. Voor de analyse is gebruik gemaakt van single-end FASTQ bestanden.
